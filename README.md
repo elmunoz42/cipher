@@ -55,13 +55,13 @@ Your final result should be in all lowercase.
 2. Click 'Start servers'
 
 ### Import database
-* Visit **`localhost:8888/phpMyAdmin`** in browser
+* Visit **`localhost:80/phpMyAdmin`** in browser
 * Click 'Import' tab
  - Character set: utf-8
  - File: **`<repo_pathname>/sites/db-backup/<backup_filename>`**
 
 ### Create database admin
-* Visit **`localhost:8888/phpMyAdmin`** in browser
+* Visit **`localhost:80/phpMyAdmin`** in browser
 * Click 'Privileges' tab for `cipher`
 * Add user
  - Name: `cipher`
