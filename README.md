@@ -16,14 +16,16 @@ MySQL port set to 3306
 |DONE| 1) Create vanilla Drupal 7 project.|
 |DONE| 2) Create custom module with simple display test.|
 |DONE| 3) Create a form with three fields: shift value, direction and phrase input.|
-|TODO| Create the business logic for the cipher encryption.|
-|TODO| Create logic for punctuation and exception handling.|
+|DONE| 4) Create the business logic for the cipher encryption.|
+|TODO| 5) Adjust for input exceptions by adjusting form and encryption function.|
 |TODO| Create display page by formatting the output. |
+|TODO| Create logic for punctuation and exception handling.|
 
 ## Specifications
 |Spec# | Behavior           | Input           |         Output |
 |------|--------------------|-----------------|----------------|
-|1     |User inputs a word and sees the resulting encrypted message| "hello" | "khoor"|
+|1     |User inputs a word and sees the resulting encrypted message| 'hello' | 'khoor'|
+|2     |User inputs a phrase with punctuation and sees the resulting encrypted message| 'hi there!' | 'gh sgdqd!'|
 
 ## Encryption Information
 The encryption takes in three values: shift value, direction and phrase input to be encrypted.
