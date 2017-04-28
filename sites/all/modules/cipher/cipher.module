@@ -45,12 +45,38 @@
     }
 
     function cipher_form_submit($form, &$form_state) {
-        $shift_value=$form_state['values']['shift_value'];
-        $direction=$form_state['values']['direction'];
-        $input=$form_state['values']['input'];
-        
+
+        // $shift_value=$form_state['values']['shift_value'];
+        // $direction=$form_state['values']['direction'];
+        // $input=$form_state['values']['input'];
+
         $form_state['redirect']='cipher_output';
     }
+
+    function encrypt(){
+        //a)Create variables from respective form_state values.
+        $shift_value=3;
+        $direction=-1;
+        $input='hello';
+        $alphabet=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+        //b)Separate input into letters.
+        $input_arr= str_split($input);
+        // var_dump($input_arr);
+        //c)For each letter find respective letter in alphabet array take its index.
+        //Add shift_value to that index and use it to find new respective letter and push to output array.
+        $output_arr=array();
+        foreach ($input_arr as $index => $letter) {
+            $alphabet_index = array_search($letter, $alphabet);
+            $shifted_index = ($alphabet_index + ($direction*$shift_value))%25;
+            array_push($output_arr, $alphabet[$shifted_index]);
+        }
+
+        //d)Reconstitute string from array and save to Session global.
+        $output = implode($output_arr);
+        $_SESSION['encrypted_message']=$output;
+    }
     function display_cipher(){
-        return 'it works!'. $_SESSION['output'];
+        $output=encrypt();
+        return 'it works!'. $_SESSION['encrypted_message'];
     }
