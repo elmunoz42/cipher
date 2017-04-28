@@ -13,13 +13,20 @@ MySQL port set to 3306
 
 |Status| Objective |
 |------|-----------|
-|DONE| Create vanilla drupal 7 project.|
+|DONE| Create vanilla Drupal 7 project.|
 |TODO| Create custom module with simple display test.|
 |TODO| Create a form with three fields: shift value, direction and phrase input.|
 |TODO| Create the business logic for the cipher encryption.|
 |TODO| Create logic for punctuation and exception handling.|
 |TODO| Create display page by formatting the output. |
 
+## Encryption Information
+The encryption takes in three values: shift value, direction and phrase input to be encrypted.
+The shift value is the number of places to shift each letter over.
+If the shift direction is "right" then you will add the shift value. For example: "a" with a shift value of 1 and a direction of right would become "b". A shift direction of "left" with a shift value of 1 would turn "b" into "a".
+If the shift amount takes you over the bounds of the alphabet then cycle back to the beginning. For example: a shift value of 3 with the direction of right would turn "z" into "c".
+Any spaces or punctuation in the input phrase should be ignored and reproduced in the final result without being shifted.
+Your final result should be in all lowercase.
 
 ## Setup
 1. Clone repository from https://github.com/elmunoz42/cipher.git
