@@ -16,6 +16,8 @@ MySQL port set to 3306
 |DONE| Create vanilla drupal 7 project.|
 |TODO| Create custom module with simple display test.|
 |TODO| Create a form with three fields: shift value, direction and phrase input.|
+|TODO| Create the business logic for the cipher encryption.|
+|TODO| Create logic for punctuation and exception handling.|
 |TODO| Create display page by formatting the output. |
 
 
@@ -64,7 +66,6 @@ _No known bugs._
 ## Support
 
 _Please contact elmunoz42@gmail.com with questions or concerns._
-
 
 ### License
 
