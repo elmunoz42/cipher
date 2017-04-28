@@ -1,7 +1,7 @@
 <?php
     function cipher_menu() {
         $items['cipher_input']=array(
-            'title'=>'Cipher',
+            'title'=>'Create your own Cipher',
             'page callback' => 'drupal_get_form',
             'page arguments' => array('cipher_form'),
             'access callback' => TRUE,
