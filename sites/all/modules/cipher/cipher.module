@@ -1,14 +1,55 @@
 <?php
     function cipher_menu() {
-        $items['cipher']=array(
+        $items['cipher_input']=array(
             'title'=>'Cipher',
-            'page callback' => 'display_cipher',
+            'page callback' => 'drupal_get_form',
+            'page arguments' => array('cipher_form'),
             'access callback' => TRUE,
             'type' => MENU_NORMAL_ITEM,
+        );
+        $items['cipher_output']=array(
+            'title'=>'Cipher_Output',
+            'page callback' => 'display_cipher',
+            'access callback' => TRUE,
+            'type' => MENU_CALLBACK,
         );
         return $items;
     }
 
+    function cipher_form($form, &$form_state) {
+        $form['shift_value']=array(
+            '#title'=>'shift value',
+            '#type' => 'textfield',
+            '#description'=>t('What value(integer) would you like the letters to be shifted by>'),
+            '#element_validate'=>array('element_validate_number'),
+            '#required' => TRUE,
+        );
+        $form['direction']=array(
+            '#title'=>'direction',
+            '#type' => 'textfield',
+            '#description'=>t('What direction would you like the letters shifted.'),
+            '#element_validate'=>array('element_validate_number'),
+            '#required' => TRUE,
+        );
+        $form['input']=array(
+            '#title'=>'phrase input',
+            '#type' => 'textfield',
+            '#description'=>t('Please input a phrase to be encrypted.'),
+            '#required' => TRUE,
+        );
+        $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Go',
+        );
+        return $form;
+    }
+
+    function cipher_form_submit($form, &$form_state) {
+        $_SESSION['shift_value']=$form_state['values']['shift_value'];
+        $_SESSION['direction']=$form_state['values']['direction'];
+        $_SESSION['input']=$form_state['values']['input'];
+        $form_state['redirect']='cipher_output';
+    }
     function display_cipher(){
-        return 'it works!';
+        return 'it works!'. $_SESSION['shift_value']. $_SESSION['direction']. $_SESSION['input'];
     }
