@@ -1,0 +1,14 @@
+<?php
+    function cipher_menu() {
+        $items['cipher']=array(
+            'title'=>'Cipher',
+            'page callback' => 'display_cipher',
+            'access callback' => TRUE,
+            'type' => MENU_NORMAL_ITEM,
+        );
+        return $items;
+    }
+
+    function display_cipher(){
+        return 'it works!';
+    }
