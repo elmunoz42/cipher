@@ -13,9 +13,9 @@ MySQL port set to 3306
 
 |Status| Objective |
 |------|-----------|
-|DONE| Create vanilla Drupal 7 project.|
-|TODO| Create custom module with simple display test.|
-|TODO| Create a form with three fields: shift value, direction and phrase input.|
+|DONE| 1) Create vanilla Drupal 7 project.|
+|DONE| 2) Create custom module with simple display test.|
+|DONE| 3) Create a form with three fields: shift value, direction and phrase input.|
 |TODO| Create the business logic for the cipher encryption.|
 |TODO| Create logic for punctuation and exception handling.|
 |TODO| Create display page by formatting the output. |
