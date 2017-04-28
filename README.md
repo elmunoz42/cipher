@@ -17,9 +17,9 @@ MySQL port set to 3306
 |DONE| 2) Create custom module with simple display test.|
 |DONE| 3) Create a form with three fields: shift value, direction and phrase input.|
 |DONE| 4) Create the business logic for the cipher encryption.|
-|TODO| 5) Adjust for input exceptions by adjusting form and encryption function.|
-|TODO| Create display page by formatting the output. |
-|TODO| Create logic for punctuation and exception handling.|
+|DONE| 5) Adjust for input exceptions by adjusting form and encryption function. |
+|DONE| 6) Create logic for punctuation and exception handling.|
+|DONE| 7) Create display page by formatting the output. |
 
 ## Specifications
 |Spec# | Behavior           | Input           |         Output |
@@ -34,6 +34,11 @@ If the shift direction is "right" then you will add the shift value. For example
 If the shift amount takes you over the bounds of the alphabet then cycle back to the beginning. For example: a shift value of 3 with the direction of right would turn "z" into "c".
 Any spaces or punctuation in the input phrase should be ignored and reproduced in the final result without being shifted.
 Your final result should be in all lowercase.
+
+## Form input validation notes
+* The shift value must be a positive integer
+* The shift direction must be either "left" or "right".
+* The only special characters that should be allowed in your input phrase are spaces and punctuation.
 
 ## Setup
 1. Clone repository from https://github.com/elmunoz42/cipher.git

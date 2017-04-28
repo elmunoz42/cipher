@@ -8,7 +8,7 @@
             'type' => MENU_NORMAL_ITEM,
         );
         $items['cipher_output']=array(
-            'title'=>'Cipher_Output',
+            'title'=>'Cipher Result',
             'page callback' => 'display_cipher',
             'access callback' => TRUE,
             'type' => MENU_CALLBACK,
@@ -20,21 +20,22 @@
         $form['shift_value']=array(
             '#title'=>'shift value',
             '#type' => 'textfield',
-            '#description'=>t('What value(integer) would you like the letters to be shifted by>'),
-            '#element_validate'=>array('element_validate_number'),
+            '#description'=>t('What positive integer would you like the letters to be shifted by?'),
+            '#element_validate'=>array('element_validate_integer_positive'),
             '#required' => TRUE,
         );
         $form['direction']=array(
             '#title'=>'direction',
             '#type' => 'textfield',
             '#description'=>t('What direction would you like the letters shifted.'),
-            '#element_validate'=>array('element_validate_number'),
+            '#element_validate'=>array('element_validate_leftright'),
             '#required' => TRUE,
         );
         $form['input']=array(
             '#title'=>'phrase input',
             '#type' => 'textfield',
             '#description'=>t('Please input a phrase to be encrypted.'),
+            '#element_validate'=>array('element_validate_unspecial'),
             '#required' => TRUE,
         );
         $form['submit'] = array(
@@ -43,6 +44,27 @@
         );
         return $form;
     }
+
+    function element_validate_leftright($element) {
+        $constraints = ["left","right"];
+        $input = $element['#value'];
+        if (!in_array($input, $constraints)) {
+            form_error($element, t('Direction must be "left" or "right".'));
+        }
+    }
+
+    function element_validate_unspecial($element) {
+        $constraints = "[\'^£$%&*()}{@#~?><>,|=_+¬-]";
+        $constraints_arr = str_split($constraints);
+        $input_arr = str_split($element['#value']);
+
+        foreach ($input_arr as $character) {
+            if (in_array($character, $constraints_arr)) {
+                form_error($element, t('No special characters allowed'));
+            }
+        }
+    }
+
 
     function cipher_form_submit($form, &$form_state) {
 
@@ -53,9 +75,13 @@
         $form_state['redirect']='cipher_output';
     }
 
-    function encrypt($shift_value, $direction, $input){
+    function encrypt($shift_value, $directionString, $input){
         //a)Create variables from respective form_state values.
         $alphabet=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+        $direction=1;
+        if($directionString=='left') {
+            $direction=-1;
+        }
 
         //b)Separate input into lowercase letters.
         $input_arr= str_split(strtolower($input));
@@ -66,7 +92,7 @@
         foreach ($input_arr as $letter) {
             if(in_array($letter, $alphabet)){
                 $alphabet_index = array_search($letter, $alphabet);
-                $shifted_index = ($alphabet_index + ($direction*$shift_value))%25;
+                $shifted_index = ($alphabet_index + ($direction*$shift_value))%26;
                 array_push($output_arr, $alphabet[$shifted_index]);
             } else {
                 array_push($output_arr, $letter);
@@ -78,5 +104,5 @@
     }
     function display_cipher(){
         $output=encrypt($_SESSION['shift_value'],$_SESSION['direction'],$_SESSION['input']);
-        return 'it works!'. $output;
+        return 'your encrypted message: '. $output;
     }
