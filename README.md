@@ -20,6 +20,11 @@ MySQL port set to 3306
 |TODO| Create logic for punctuation and exception handling.|
 |TODO| Create display page by formatting the output. |
 
+## Specifications
+|Spec# | Behavior           | Input           |         Output |
+|------|--------------------|-----------------|----------------|
+|1     |User inputs a word and sees the resulting encrypted message| "hello" | "khoor"|
+
 ## Encryption Information
 The encryption takes in three values: shift value, direction and phrase input to be encrypted.
 The shift value is the number of places to shift each letter over.
